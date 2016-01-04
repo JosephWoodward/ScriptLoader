@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Shouldly;
 
 namespace ScriptLoader.Tests
@@ -7,14 +6,17 @@ namespace ScriptLoader.Tests
     [TestFixture]
     public class Class1 : BaseTest
     {
-        [Test]
-        public void Test()
-        {
-            Core.ScriptLoader.DefaultStore = new MockStore();
-            Core.ScriptLoader.RegisterHeader("res.js");
-            string res = Core.ScriptLoader.LoadHead();
+        public readonly string TestFileReference = "/Scripts/angular.min.js";
 
-            res.ShouldContain("res.js");
+        [Test]
+        public void ShouldOutputSingleFileReference()
+        {
+            //Core.ScriptLoader.Header().Register(TestFileReference);
+
+            Core.ScriptLoader.RegisterHeader(TestFileReference);
+            string result = Core.ScriptLoader.LoadHeader();
+
+            result.ShouldContain($"<script type=\"text/javascript\" src=\"{TestFileReference}\">");
         }
     }
 }

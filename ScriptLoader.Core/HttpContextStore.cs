@@ -1,20 +1,23 @@
-﻿namespace ScriptLoader.Core
+﻿using System;
+using System.Collections.Generic;
+
+namespace ScriptLoader.Core
 {
     public class HttpContextStore : IScriptStore
     {
         public void Push(ScriptPosition position)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Push(string filePath, ScriptPosition position)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public string Pop(ScriptPosition position)
+        public IEnumerable<ScriptReference> Pop(ScriptPosition position)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

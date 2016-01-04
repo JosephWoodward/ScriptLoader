@@ -7,6 +7,7 @@ namespace ScriptLoader.Tests
         [SetUp]
         public void TestSetup()
         {
+            Core.ScriptLoader.DefaultStore = new MockStore();
         }
     }
 }

@@ -17,18 +17,9 @@ namespace ScriptLoader.Tests
             });
         }
 
-        public string Pop(ScriptPosition position)
+        public IEnumerable<ScriptReference> Pop(ScriptPosition position)
         {
-            List<ScriptReference> res = Scripts.Where(x => x.ScriptPosition == position).ToList();
-
-            string output = string.Empty;
-
-            foreach (ScriptReference scriptReference in res)
-            {
-                output += "<script type=\"text/javascript\" src=\"" + scriptReference.ScriptPath + "\">";
-            }
-
-            return output;
+            return Scripts.Where(x => x.ScriptPosition == position);
         }
     }
 }

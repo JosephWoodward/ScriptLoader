@@ -1,9 +1,11 @@
-﻿namespace ScriptLoader.Core
+﻿using System.Collections.Generic;
+
+namespace ScriptLoader.Core
 {
     public interface IScriptStore
     {
         void Push(string filePath, ScriptPosition position);
 
-        string Pop(ScriptPosition position);
+        IEnumerable<ScriptReference> Pop(ScriptPosition position);
     }
 }
