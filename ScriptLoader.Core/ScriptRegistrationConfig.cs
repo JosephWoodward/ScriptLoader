@@ -23,7 +23,7 @@ namespace ScriptLoader.Core
             store.Push(scriptPath, ScriptPosition);
         }
 
-        public string Load()
+        public string Scripts()
         {
             IEnumerable<ScriptReference> footerScripts = store.Pop(ScriptPosition);
             return ScriptOutput(footerScripts);
@@ -38,15 +38,15 @@ namespace ScriptLoader.Core
             }
         }
 
-        private string ScriptOutput(IEnumerable<ScriptReference> scripts)
+        private static string ScriptOutput(IEnumerable<ScriptReference> scripts)
         {
             var output = new StringBuilder();
             foreach (ScriptReference reference in scripts)
             {
-                output.Append($"<script type=\"text/javascript\" src=\"{reference.ScriptPath}\">");
+                output.Append($"<script type=\"text/javascript\" src=\"{reference.ScriptPath}\">\n");
             }
 
-            return output.ToString();
+            return output.ToString().TrimEnd('\n');
         }
     }
 
@@ -56,6 +56,8 @@ namespace ScriptLoader.Core
 
         void Register(string scriptPath);
 
-        string Load();
+        void Register(params string[] scriptPaths);
+
+        string Scripts();
     }
 }
